@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ashcombe College — Student &amp; Faculty Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="college-style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">A</div>
+    <div class="brand-name">Ashcombe College</div>
+  </div>
+  <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+  <nav id="mainNav">
+    <button class="tab-btn active" data-view="home">Home</button>
+    <button class="tab-btn" data-view="departments">Departments</button>
+    <button class="tab-btn" data-view="courses">Courses</button>
+    <button class="tab-btn" data-view="faculty">Faculty</button>
+    <button class="tab-btn" data-view="students">Students</button>
+    <button class="tab-btn" data-view="events">Events</button>
+    <button class="tab-btn" data-view="admissions">Admissions</button>
+  </nav>
+  <div class="header-actions">
+    <div class="search-box">
+      <input type="text" id="globalSearch" placeholder="Search site…" aria-label="Search the site" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9681;</button>
+  </div>
+</header>
+
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<main>
+
+  <section id="view-home" class="view active">
+    <div class="home-hero">
+      <div>
+        <h1>Shaping minds since 1995</h1>
+        <p>A snapshot of Ashcombe College — our departments, academic programs, faculty, and campus life, all in one place.</p>
+      </div>
+      <div class="hero-emoji">🎓</div>
+    </div>
+    <div class="stats-row" id="statsRow"></div>
+    <h3 style="font-size:17px; margin-bottom:12px;">Explore</h3>
+    <div class="quick-links">
+      <button class="quick-link" data-goto="departments">🏛️ Departments<span>6 schools of study</span></button>
+      <button class="quick-link" data-goto="courses">📚 Courses<span>Undergraduate &amp; postgraduate</span></button>
+      <button class="quick-link" data-goto="faculty">🧑‍🏫 Faculty<span>Meet our professors</span></button>
+      <button class="quick-link" data-goto="students">🏆 Students<span>Achievers &amp; highlights</span></button>
+      <button class="quick-link" data-goto="events">📅 Events<span>What's coming up</span></button>
+      <button class="quick-link" data-goto="admissions">📝 Admissions<span>Start an inquiry</span></button>
+    </div>
+  </section>
+
+  <section id="view-departments" class="view">
+    <div class="hero"><h1>🏛️ Departments</h1><p>Six schools of study, each led by a head of department.</p></div>
+    <div id="deptGrid" class="grid"></div>
+  </section>
+
+  <section id="view-courses" class="view">
+    <div class="hero"><h1>📚 Courses offered</h1><p>Undergraduate and postgraduate programs across all departments.</p></div>
+    <div class="filter-row">
+      <input type="text" id="courseSearch" placeholder="Search courses">
+      <select id="courseDeptFilter"><option value="all">All departments</option></select>
+    </div>
+    <div id="courseList" class="card" style="padding: 4px 18px;"></div>
+  </section>
+
+  <section id="view-faculty" class="view">
+    <div class="hero"><h1>🧑‍🏫 Faculty</h1><p>Our professors and their areas of expertise.</p></div>
+    <div class="filter-row">
+      <input type="text" id="facSearch" placeholder="Search faculty by name">
+      <select id="facDeptFilter"><option value="all">All departments</option></select>
+    </div>
+    <div id="facGrid" class="grid"></div>
+  </section>
+
+  <section id="view-students" class="view">
+    <div class="hero"><h1>🏆 Student achievers</h1><p>A few of the students making their mark this year.</p></div>
+    <div class="filter-row">
+      <select id="stuDeptFilter"><option value="all">All departments</option></select>
+    </div>
+    <div id="stuGrid" class="grid"></div>
+  </section>
+
+  <section id="view-events" class="view">
+    <div class="hero"><h1>📅 Upcoming events</h1><p>Technical, cultural, sporting, and academic events on campus.</p></div>
+    <div class="filter-row">
+      <select id="eventCatFilter">
+        <option value="all">All categories</option>
+      </select>
+    </div>
+    <div id="eventList" class="section-list"></div>
+  </section>
+
+  <section id="view-admissions" class="view">
+    <div class="hero"><h1>📝 Admissions inquiry</h1><p>Tell us what you're interested in and we'll follow up.</p></div>
+    <form id="admissionForm" novalidate>
+      <div class="two-col">
+        <label>Full name<input type="text" id="admName" placeholder="Jordan Lee" required></label>
+        <label>Phone<input type="tel" id="admPhone" placeholder="(555) 123-4567" required></label>
+      </div>
+      <label>Email<input type="email" id="admEmail" placeholder="[email protected]" required></label>
+      <label>Department of interest
+        <select id="admDept" required></select>
+      </label>
+      <label>Message (optional)<textarea id="admMessage" rows="3" placeholder="Questions about the program, fees, timelines…"></textarea></label>
+      <button type="submit" class="submit-btn" id="admSubmit" disabled>Submit inquiry</button>
+    </form>
+    <h3 style="font-size:15px; margin-top:26px; margin-bottom:10px;">Recent inquiries</h3>
+    <div class="inquiry-list" id="inquiryList"></div>
+    <p class="empty-note" id="inquiryEmpty">No inquiries submitted yet.</p>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="deptModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="college-script.js"></script>
+
+</body>
+</html>
